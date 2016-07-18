@@ -1,6 +1,6 @@
 import { combineReducers } from 'redux';
-import todos from './todos';
+import article from './article.jsx';
 
 export default combineReducers({
-  todos
+    article
 });

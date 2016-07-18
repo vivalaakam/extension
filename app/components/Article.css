@@ -1,0 +1,13 @@
+.article {
+    max-width: 980px;
+    margin: 0 auto;
+}
+
+.article .title {
+    font-size: 46px;
+    line-height: 55px;
+    font-weight: 700;
+    color: rgba(34, 34, 34, .71);
+    padding: 5px 0px;
+    margin-bottom: 15px;
+}

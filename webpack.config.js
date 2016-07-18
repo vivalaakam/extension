@@ -5,7 +5,7 @@ const customPath = path.join(__dirname, './webpack/customPublicPath');
 
 const config = {
     entry: {
-        todoapp: [customPath, path.join(__dirname, './chrome/extension/todoapp')],
+        app: [customPath, path.join(__dirname, './chrome/extension/app')],
         background: [customPath, path.join(__dirname, './chrome/extension/background')],
         open: [customPath, path.join(__dirname, './chrome/extension/open')]
     },
@@ -28,7 +28,7 @@ const config = {
     },
     module: {
         loaders: [{
-            test: /\.js$/,
+            test: /\.(js|jsx)$/,
             loader: 'babel',
             exclude: /node_modules/
         }, {

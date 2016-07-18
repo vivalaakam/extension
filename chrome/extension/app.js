@@ -1,7 +1,9 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import Root from '../../app/containers/Root';
-import './todoapp.css';
+import grab from '../../helpers/grab';
+import './app.css';
+import createStore from '../../app/store/configureStore';
 
 let root = document.querySelector('#root_react_element');
 if (!root) {
@@ -11,18 +13,20 @@ if (!root) {
 }
 
 if (!window.__RENDERED_MODAL__) {
+
+    let data = grab(document);
     chrome.storage.local.get('state', obj => {
-        const initialState = JSON.parse(obj.state || '{}');
-        const createStore = require('../../app/store/configureStore');
+        const {todos} = JSON.parse(obj.state || '{}');
+        const store = createStore({article: {article: data, title: document.title}, todos});
         const remove = () => {
             ReactDOM.unmountComponentAtNode(root);
-            document.body.style.overflow = 'auto';
+            document.body.style.overflow = window.__RENDERED_BODY__;
             window.__RENDERED_MODAL__ = false;
         };
 
-        ReactDOM.render(<Root store={createStore(initialState)} remove={remove}/>, root);
+        ReactDOM.render(<Root store={store} remove={remove}/>, root);
+        window.__RENDERED_BODY__ = document.body.style.overflow;
         document.body.style.overflow = 'hidden';
-
         window.__RENDERED_MODAL__ = true;
     });
 }

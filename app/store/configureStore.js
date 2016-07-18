@@ -1,5 +1,14 @@
-if (process.env.NODE_ENV === 'production') {
-  module.exports = require('./configureStore.prod');
-} else {
-  module.exports = require('./configureStore.dev');
+import { applyMiddleware, createStore, compose } from 'redux';
+import rootReducer from '../reducers';
+import thunk from 'redux-thunk';
+import storage from '../utils/storage';
+
+const middlewares = applyMiddleware(thunk);
+const enhancer = compose(
+    middlewares,
+    storage()
+);
+
+export default function (initialState) {
+    return createStore(rootReducer, initialState, enhancer);
 }
