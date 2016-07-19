@@ -5,9 +5,8 @@ const customPath = path.join(__dirname, './webpack/customPublicPath');
 
 const config = {
     entry: {
-        app: [customPath, path.join(__dirname, './chrome/extension/app')],
-        background: [customPath, path.join(__dirname, './chrome/extension/background')],
-        open: [customPath, path.join(__dirname, './chrome/extension/open')]
+        app: [customPath, path.join(__dirname, './chrome/app')],
+        background: [customPath, path.join(__dirname, './chrome/background')],
     },
     output: {
         path: path.join(__dirname, './build/js'),

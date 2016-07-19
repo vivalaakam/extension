@@ -1,8 +1,6 @@
 import React , {Component} from 'react';
 import style from './Article.css';
 
-console.log(style);
-
 export default class Article extends Component {
     constructor(props) {
         super(props);
