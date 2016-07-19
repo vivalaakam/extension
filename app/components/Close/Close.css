@@ -1,0 +1,19 @@
+.close {
+    position: relative;
+    z-index: 1;
+}
+
+.back {
+    padding: 5px 10px;
+    border: none;
+    background-color: inherit;
+    font-size: 14px;
+}
+
+.back:hover {
+    cursor: pointer;
+}
+
+.back:focus {
+    outline: none;
+}

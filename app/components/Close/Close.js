@@ -20,7 +20,7 @@ export default class Close extends Component {
     render() {
         return (
             <div className={style.close}>
-                <button onClick={::this.onClick}>
+                <button className={style.back} onClick={::this.onClick}>
                     CLOSE
                 </button>
             </div>
