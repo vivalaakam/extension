@@ -1,6 +1,7 @@
 .article {
     max-width: 980px;
     margin: 0 auto;
+    padding: 5px 10px;
 }
 
 .article .title {
@@ -12,6 +13,16 @@
     margin-bottom: 15px;
 }
 
-.article p {
+.article p,
+.article ul {
     margin-bottom: 23px;
+}
+
+.article img {
+    max-width: 100%;
+}
+
+.article ul {
+    list-style-type: disc;
+    padding-left: 25px;
 }
