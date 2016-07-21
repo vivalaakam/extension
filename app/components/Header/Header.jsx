@@ -3,11 +3,46 @@ import style from './Header.css';
 import Close from '../Close/Close'
 
 export default class Header extends Component {
+
+    showModal() {
+        this.props.actions.showModal('AUTH_MODAL');
+    }
+
+    showRegister() {
+    }
+
+    logout() {
+        const {actions} = this.props;
+        actions.logout();
+    }
+
+    getLogin() {
+        const {auth} = this.props;
+        if (auth.id) {
+            return (
+                <div className={style.login_info}>
+                    <div className={style.email}>{auth.email}</div>
+                    <button className={style.btn} onClick={::this.logout}>Logout</button>
+                </div>
+            )
+        } else {
+            return (
+                <div className={style.login_info}>
+                    <button className={style.btn} onClick={::this.showModal}>Login</button>
+                    <button className={style.btn} onClick={::this.showRegister}>Register</button>
+                </div>
+            )
+        }
+    }
+
     render() {
         return (
             <div className={style.header}>
                 <div className={style.wrapper}>
-                    <Close />
+                    <div className={style.back}>
+                        <Close />
+                    </div>
+                    {this.getLogin()}
                 </div>
             </div>
         );

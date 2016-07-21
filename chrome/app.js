@@ -14,16 +14,22 @@ if (!root) {
 
 if (!window.__RENDERED_MODAL__) {
     let data = grab(document);
-    const store = createStore({article: {article: data, title: document.title}});
-    const remove = () => {
-        ReactDOM.unmountComponentAtNode(root);
-        document.body.style.overflow = window.__RENDERED_BODY__;
-        window.__RENDERED_MODAL__ = false;
-    };
 
-    ReactDOM.render(<Root store={store} remove={remove}/>, root);
-    window.__RENDERED_BODY__ = document.body.style.overflow;
-    document.body.style.overflow = 'hidden';
-    window.__RENDERED_MODAL__ = true;
+    chrome.storage.local.get('state', obj => {
+        const { state } = obj;
+        const initialState = JSON.parse(state || '{}');
+        const store = createStore({...initialState, article: {article: data, title: document.title}});
+
+        const remove = () => {
+            ReactDOM.unmountComponentAtNode(root);
+            document.body.style.overflow = window.__RENDERED_BODY__;
+            window.__RENDERED_MODAL__ = false;
+        };
+
+        ReactDOM.render(<Root store={store} remove={remove}/>, root);
+        window.__RENDERED_BODY__ = document.body.style.overflow;
+        document.body.style.overflow = 'hidden';
+        window.__RENDERED_MODAL__ = true;
+    });
 }
 

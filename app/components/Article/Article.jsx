@@ -16,8 +16,7 @@ export default class Article extends Component {
         return (
             <div className={style.article}>
                 <h1 className={style.title}>{article.title}</h1>
-                <div dangerouslySetInnerHTML={this.getArticle()}>
-                </div>
+                <div dangerouslySetInnerHTML={this.getArticle()}></div>
             </div>
         );
     }

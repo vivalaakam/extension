@@ -16,7 +16,9 @@
 
 .article p,
 .article ul {
-    margin-bottom: 23px;
+    margin-bottom: 22px;
+    line-height: 33px;
+    font-size: 22px;
 }
 
 .article img {

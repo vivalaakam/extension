@@ -3,10 +3,13 @@ const webpack = require('webpack');
 
 const customPath = path.join(__dirname, './webpack/customPublicPath');
 
+const devBuild = process.env.NODE_ENV !== 'production';
+const nodeEnv = devBuild ? 'development' : 'production';
+
 const config = {
     entry: {
         app: [customPath, path.join(__dirname, './chrome/app')],
-        background: [customPath, path.join(__dirname, './chrome/background')],
+        background: [customPath, path.join(__dirname, './chrome/background')]
     },
     output: {
         path: path.join(__dirname, './build/js'),
@@ -18,7 +21,11 @@ const config = {
         new webpack.IgnorePlugin(/[^/]+\/[\S]+.dev$/),
         new webpack.DefinePlugin({
             'process.env': {
-                NODE_ENV: JSON.stringify('production')
+                NODE_ENV: JSON.stringify('production'),
+                READING_KEY: JSON.stringify(process.env.READING_KEY),
+                READING_DOMAIN: JSON.stringify(process.env.READING_DOMAIN),
+                READING_DATABASE: JSON.stringify(process.env.READING_DATABASE),
+                READING_STORAGE: JSON.stringify(process.env.READING_STORAGE)
             }
         })
     ],

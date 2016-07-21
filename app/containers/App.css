@@ -14,4 +14,9 @@
     line-height: 31px;
     font-weight: 300;
     color: rgba(49, 49, 49);
+    box-sizing: border-box;
+}
+
+.app * {
+    box-sizing: border-box;
 }

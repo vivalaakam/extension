@@ -5,10 +5,42 @@
     width: 100%;
     z-index: 1;
     background-color: inherit;
+    font-size: 14px;
 }
 
 .wrapper {
-    width: 980px;
+    max-width: 980px;
     margin: 0 auto;
     padding: 5px 0px;
+    position: relative;
+    display: flex;
+    align-items: stretch;
+    flex-flow: row wrap;
+    justify-content: space-between;
+}
+
+.login_info {
+    text-align: right;
+}
+
+.back {
+
+}
+
+.email {
+    display: inline-block;
+}
+
+.btn {
+    padding: 5px 10px;
+    border: none;
+    background-color: inherit;
+}
+
+.btn:hover {
+    cursor: pointer;
+}
+
+.btn:focus {
+    outline: none;
 }

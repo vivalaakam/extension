@@ -1,0 +1,14 @@
+.inp {
+    padding: 5px 10px;
+    border: 1px solid #eee;
+    border-radius: 3px;
+    width: 100%;
+}
+
+.inp:focus {
+    outline: none;
+}
+
+.row {
+    margin-bottom: 5px;
+}
