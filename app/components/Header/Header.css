@@ -8,6 +8,10 @@
     font-size: 14px;
 }
 
+.header * {
+    font-size: 14px;
+}
+
 .wrapper {
     max-width: 980px;
     margin: 0 auto;

@@ -13,7 +13,10 @@ if (!root) {
 }
 
 if (!window.__RENDERED_MODAL__) {
+
     let data = grab(document);
+    data = data.replace(/((role|name|class|id|style|data-\w+)=")([a-zA-Z0-9:;\.\s\(\)\-\,]*)(")/ig, "");
+    data = data.replace(/(<[^\/>][^>]*>\s*<\/[^>]+>)/ig, "");
 
     chrome.storage.local.get('state', obj => {
         const { state } = obj;
