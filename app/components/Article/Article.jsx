@@ -1,14 +1,18 @@
 import React , {Component} from 'react';
+import Remarkable from 'remarkable'
+
 import style from './Article.css';
 
 export default class Article extends Component {
     constructor(props) {
         super(props);
+
+        this.md = new Remarkable();
     }
 
     getArticle() {
         const {article} = this.props;
-        return {__html: article.article};
+        return {__html: this.md.render(article.markdown)};
     }
 
     render() {

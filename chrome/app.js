@@ -1,5 +1,6 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
+import md from 'html-md';
 import Root from '../app/containers/Root';
 import grab from '../helpers/grab';
 import createStore from '../app/store/configureStore';
@@ -14,14 +15,16 @@ if (!root) {
 
 if (!window.__RENDERED_MODAL__) {
 
-    let data = grab(document);
-    data = data.replace(/((role|name|class|id|style|data-\w+)=")([a-zA-Z0-9:;\.\s\(\)\-\,]*)(")/ig, "");
-    data = data.replace(/(<[^\/>][^>]*>\s*<\/[^>]+>)/ig, "");
+    const data = grab(document);
+    const markdown = md(data, {
+        absolute: true,
+        inline: true
+    });
 
     chrome.storage.local.get('state', obj => {
         const { state } = obj;
         const initialState = JSON.parse(state || '{}');
-        const store = createStore({...initialState, article: {article: data, title: document.title}});
+        const store = createStore({...initialState, article: {markdown, title: document.title}});
 
         const remove = () => {
             ReactDOM.unmountComponentAtNode(root);

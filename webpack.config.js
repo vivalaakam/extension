@@ -19,6 +19,7 @@ const config = {
     plugins: [
         new webpack.optimize.OccurenceOrderPlugin(),
         new webpack.IgnorePlugin(/[^/]+\/[\S]+.dev$/),
+        new webpack.IgnorePlugin(/jsdom$/),
         new webpack.DefinePlugin({
             'process.env': {
                 NODE_ENV: JSON.stringify('production'),
@@ -44,7 +45,16 @@ const config = {
                 'css?modules&sourceMap&importLoaders=1&localIdentName=[name]__[local]___[hash:base64:5]',
                 'postcss'
             ]
+        }, {
+            test: /\.json/,
+            loader: 'json-loader'
+        }, {
+            test: /\.md/,
+            loader: 'markdown-loader'
         }]
+    },
+    node: {
+
     }
 };
 
