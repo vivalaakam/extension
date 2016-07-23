@@ -2,6 +2,16 @@ import * as helpers from '../node_modules/node-readability/src/helpers';
 helpers.debug();
 const cache = {};
 export default function (dom) {
+
+    const selection = window.getSelection();
+    if (selection.rangeCount > 0) {
+        const range = selection.getRangeAt(0);
+        const div = document.createElement('div');
+        div.appendChild(range.cloneContents());
+        return div.innerHTML;
+    }
+
+
     if (cache.article) {
         return cache.article;
     }
