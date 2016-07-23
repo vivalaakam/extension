@@ -24,7 +24,7 @@ if (!window.__RENDERED_MODAL__) {
     chrome.storage.local.get('state', obj => {
         const { state } = obj;
         const initialState = JSON.parse(state || '{}');
-        const store = createStore({...initialState, article: {markdown, title: document.title}});
+        const store = createStore({...initialState, article: {markdown, title: document.title, progress: 0}});
 
         const remove = () => {
             ReactDOM.unmountComponentAtNode(root);

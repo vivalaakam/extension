@@ -1,21 +1,19 @@
-import * as ActionTypes from '../constants/ActionTypes';
+import {ADD_ARTICLE, PROGRESS_ARTICLE} from '../constants/ActionTypes';
+import {Merge} from './actions';
 
-const initialState = {
+const $$initialState = {
     article: '',
-    title: ''
+    title: '',
+    progress: 0
 };
 
-const actionsMap = {
-    [ActionTypes.ADD_ARTICLE](state, action) {
-        return {
-            article: action.article,
-            title: action.title
-        };
+export default function auth($$state = $$initialState, action) {
+    switch (action.type) {
+        case ADD_ARTICLE:
+            return Merge($$state, action.article);
+        case PROGRESS_ARTICLE:
+            return Merge($$state, {progress: action.progress});
+        default:
+            return $$state;
     }
-};
-
-export default function article(state = initialState, action) {
-    const reduceFn = actionsMap[action.type];
-    if (!reduceFn) return state;
-    return reduceFn(state, action);
 }

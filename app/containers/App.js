@@ -26,12 +26,62 @@ export default class App extends Component {
         actions: PropTypes.object.isRequired
     };
 
+    static events = [
+        'DOMContentLoaded', 'load', 'resize'
+    ];
+
+    constructor(props) {
+        super(props);
+
+        this.handler = ::this.handler;
+        this.onScroll = ::this.onScroll
+    }
+
+    componentDidMount() {
+        this.setSizes();
+        window.addEventListener('scroll', this.onScroll, false);
+        App.events.map((event) => {
+            window.addEventListener(event, this.handler, false);
+        });
+    }
+
+    componentWillUnmount() {
+        window.removeEventListener('scroll', this.onScroll, false);
+        App.events.map((event) => {
+            window.removeEventListener(event, this.handler, false);
+        });
+    }
+
+    handler() {
+        this.setSizes();
+        this.trigger('scroll');
+    }
+
+    trigger(eventName) {
+        const event = document.createEvent('HTMLEvents');
+        event.initEvent(eventName, true, false);
+        window.dispatchEvent(event);
+    }
+
+    setSizes() {
+        const {inner} = this.refs.article.refs;
+        const wh = window.innerHeight;
+        const h = inner.clientHeight;
+        this.sHeight = h - wh;
+    }
+
+    onScroll() {
+        const top = this.refs.scroll.scrollTop;
+        const perc = Math.max(0, Math.min(1, top / this.sHeight));
+        this.props.actions.progressArticle(Math.round(perc * 100));
+    }
+
     render() {
         const { actions, article, auth } = this.props;
         return (
-            <div className={style.app}>
-                <Header {...{actions, auth}}/>
-                <Article {...{article, actions}} />
+            <div className={style.app} onScroll={::this.onScroll} ref="scroll">
+                <Header {...{actions, auth, progress: article.progress}}/>
+                <Article {...{article, actions}} ref="article"/>
                 <Modal />
             </div>
         );

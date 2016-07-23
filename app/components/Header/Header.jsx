@@ -1,6 +1,7 @@
 import React , {Component} from 'react';
 import style from './Header.css';
 import Close from '../Close/Close'
+import ProgressBar from '../ProgressBar/ProgressBar';
 
 export default class Header extends Component {
 
@@ -38,6 +39,7 @@ export default class Header extends Component {
     render() {
         return (
             <div className={style.header}>
+                <ProgressBar progress={this.props.progress}/>
                 <div className={style.wrapper}>
                     <div className={style.back}>
                         <Close />
