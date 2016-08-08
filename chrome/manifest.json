@@ -1,7 +1,7 @@
 {
-  "version": "0.0.1",
-  "name": "react-chrome-extension-example",
-  "description": "Example for react-chrome-extension-boilerplate",
+  "version": "0.1.0",
+  "name": "chrome-read",
+  "description": "Chrome reading extension",
   "icons": {
     "16": "img/icon-16.png",
     "48": "img/icon-48.png",
@@ -18,7 +18,7 @@
     "persistent": false
   },
   "browser_action": {
-    "default_title": "Make this page red"
+    "default_title": ""
   },
   "manifest_version": 2
 }
