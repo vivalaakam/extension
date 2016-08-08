@@ -22,19 +22,22 @@ if (!window.__RENDERED_MODAL__) {
     });
 
     chrome.storage.local.get('state', obj => {
-        const { state } = obj;
+        const {state} = obj;
         const initialState = JSON.parse(state || '{}');
         const store = createStore({...initialState, article: {markdown, title: document.title, progress: 0}});
 
         const remove = () => {
             ReactDOM.unmountComponentAtNode(root);
             document.body.style.overflow = window.__RENDERED_BODY__;
+            document.body.style.maxHeight = window.__RENDERED_BODY_HEIGHT__;
             window.__RENDERED_MODAL__ = false;
         };
 
         ReactDOM.render(<Root store={store} remove={remove}/>, root);
         window.__RENDERED_BODY__ = document.body.style.overflow;
+        window.__RENDERED_BODY_HEIGHT__ = document.body.style.maxHeight;
         document.body.style.overflow = 'hidden';
+        document.body.style.maxHeight = '100vh';
         window.__RENDERED_MODAL__ = true;
     });
 }
