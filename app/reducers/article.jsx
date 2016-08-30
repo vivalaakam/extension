@@ -1,5 +1,7 @@
-import {ADD_ARTICLE, PROGRESS_ARTICLE} from '../constants/ActionTypes';
 import {Merge} from './actions';
+
+export const ADD_ARTICLE = 'ADD_ARTICLE';
+export const PROGRESS_ARTICLE = 'PROGRESS_ARTICLE';
 
 const $$initialState = {
     article: '',
@@ -10,10 +12,20 @@ const $$initialState = {
 export default function auth($$state = $$initialState, action) {
     switch (action.type) {
         case ADD_ARTICLE:
-            return Merge($$state, action.article);
         case PROGRESS_ARTICLE:
-            return Merge($$state, {progress: action.progress});
+            return Merge($$state, action.payload);
         default:
             return $$state;
+    }
+}
+
+export function addArticle(article, title) {
+    return {type: ADD_ARTICLE, payload: {article, title}};
+}
+
+export function progressArticle(progress) {
+    return {
+        type: PROGRESS_ARTICLE,
+        payload: {progress}
     }
 }

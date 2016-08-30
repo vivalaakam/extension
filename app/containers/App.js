@@ -1,12 +1,12 @@
-import React, { Component, PropTypes } from 'react';
-import { bindActionCreators } from 'redux';
-import { connect } from 'react-redux';
+import React, {Component, PropTypes} from 'react';
+import {bindActionCreators} from 'redux';
+import {connect} from 'react-redux';
 import Modal from './Modal.js';
 import Article from '../components/Article/Article.jsx';
 import Header from '../components/Header/Header';
-import * as ArticleActions from '../actions/article';
-import {showModal} from '../actions/modal';
-import {logout} from '../actions/auth';
+import * as ArticleActions from '../reducers/article';
+import {showModal} from '../reducers/modal';
+import {logout} from '../reducers/auth';
 import style from './App.css';
 
 @connect(
@@ -77,7 +77,7 @@ export default class App extends Component {
     }
 
     render() {
-        const { actions, article, auth } = this.props;
+        const {actions, article, auth} = this.props;
         return (
             <div className={style.app} onScroll={::this.onScroll} ref="scroll">
                 <Header {...{actions, auth, progress: article.progress}}/>

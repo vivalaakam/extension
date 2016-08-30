@@ -3,7 +3,7 @@ import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
 import ConfirmModal from '../components/ConfirmModal/ConfirmModal.jsx';
 import AuthModal from './AuthModal';
-import * as ModalActions from '../actions/modal';
+import * as ModalActions from '../reducers/modal';
 
 const MODAL_COMPONENTS = {
     CONFIRM_MODAL: ConfirmModal,

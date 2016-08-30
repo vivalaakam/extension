@@ -1,9 +1,9 @@
-import React, { Component, PropTypes } from 'react';
-import { bindActionCreators } from 'redux';
-import { connect } from 'react-redux';
+import React, {Component, PropTypes} from 'react';
+import {bindActionCreators} from 'redux';
+import {connect} from 'react-redux';
 import AuthModalWidget from '../components/AuthModal/AuthModal';
-import * as AuthActions from '../actions/auth';
-import * as ModalActions from '../actions/modal';
+import * as AuthActions from '../reducers/auth';
+import * as ModalActions from '../reducers/modal';
 
 @connect(
     state => ({
